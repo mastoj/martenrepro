@@ -19,7 +19,6 @@ builder.Services.AddControllers();
 builder.Services.AddCarter();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddScoped<IEventStore, MartenStore>();
-builder.Services.AddSingleton<ISomeService, SomeService>();
 builder.Services.AddScoped<Application, Application>(sp =>
 {
     return new Application(sp.GetRequiredService<IEventStore>(), _ => false);

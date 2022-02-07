@@ -45,14 +45,6 @@ public class MartenStore : IEventStore
         return new ReadResult<TEvent>(version, eventData.Select(y => y.Data as TEvent).ToArray());
     }
 
-    // public async Task<DocumentWrapper<TDocument>> AggregateAsync<TDocument>(Guid streamId) where TDocument : Document
-    // {
-    //     var document = await _session.Events.AggregateStreamAsync<TDocument>(streamId);
-    //     var state = await _session.Events.FetchStreamStateAsync(streamId);
-
-    //     return new(state?.Version ?? 0, document);
-    // }
-
     public void Subscribe(Action<object> subscriber)
     {
         throw new NotImplementedException();

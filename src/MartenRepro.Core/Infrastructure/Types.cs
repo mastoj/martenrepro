@@ -9,9 +9,6 @@ public interface IDocumentCreated
     public Guid Id { get; }
 };
 
-//public record DocumentWrapper<TDocument>(long Version, TDocument? Document) //: Document;
-//public abstract record Document(Guid Id);
-
 #region Exceptions
 public class DuplicateIdException : Exception
 {
