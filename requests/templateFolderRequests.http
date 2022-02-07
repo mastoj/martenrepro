@@ -1,0 +1,20 @@
+### Create template folder
+POST http://localhost:5000/templatefolder
+Content-Type: application/json
+
+{
+    "id": "b50cf10a-4144-45c3-8c85-f26d93515f1a",
+    "name": "my-folder"
+}
+
+### Add group
+POST http://localhost:5000/templatefolder/b50cf10a-4144-45c3-8c85-f26d93515f1a/groups
+Content-Type: application/json
+
+{
+    "id": "b50cf10a-4144-45c3-8c85-f26d93515f1a",
+    "groupName": "my group"
+}
+
+### Get template folder
+GET http://localhost:5000/templatefolder/b50cf10a-4144-45c3-8c85-f26d93515f1a
