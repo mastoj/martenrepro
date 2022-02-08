@@ -16,6 +16,7 @@ public class MartenStore : IEventStore
     {
         Console.WriteLine("==> Appending events: " + streamId);
 
+        var deltaVersion = 1;
         foreach (var @event in events)
         {
             if (@event == null)
@@ -23,7 +24,8 @@ public class MartenStore : IEventStore
                 continue;
             }
 
-            _session.Events.Append(streamId, expectedVersion++, @event);
+            _session.Events.Append(streamId, expectedVersion+deltaVersion, @event);
+            deltaVersion++;
         }
 
         return _session.SaveChangesAsync();

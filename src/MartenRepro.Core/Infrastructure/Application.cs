@@ -13,11 +13,19 @@ public class Application {
 
     public async Task<object> Execute(Command command)
     {
-        var result = command switch {
-            TemplateFolderCommand templateFolderCommand => 
-                (await templateFolderHandler.Handle(templateFolderCommand)).Select(y => (object)y),
-            _ => throw new System.ArgumentException("Unknown command", nameof(command))
-        };
-        return result;
+        try
+        {
+            var result = command switch {
+                TemplateFolderCommand templateFolderCommand => 
+                    (await templateFolderHandler.Handle(templateFolderCommand)).Select(y => (object)y),
+                _ => throw new System.ArgumentException("Unknown command", nameof(command))
+            };
+            return result;
+        }
+        catch(Exception ex) 
+        {
+            Console.WriteLine("==> Exception: " + ex.Message);
+            return new { Error = ex.Message };
+        }
     }
 }
