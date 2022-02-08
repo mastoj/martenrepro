@@ -16,15 +16,8 @@ public class MartenStore : IEventStore
     {
         Console.WriteLine("==> Appending events: " + streamId);
 
-        foreach (var @event in events)
-        {
-            if (@event == null)
-            {
-                continue;
-            }
-
-            _session.Events.Append(streamId, expectedVersion++, @event);
-        }
+        var eventArray = events.ToArray();
+        _session.Events.Append(streamId, expectedVersion + eventArray.Length, eventArray);
 
         return _session.SaveChangesAsync();
     }
