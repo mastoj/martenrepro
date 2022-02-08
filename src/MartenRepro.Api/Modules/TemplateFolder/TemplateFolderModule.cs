@@ -46,11 +46,11 @@ public class TemplateFolderModule : ICarterModule
         }
     }
 
-    public object AddGroup(Application application, Guid folderId, AddGroupRequest request)
+    public async Task<object> AddGroup(Application application, Guid folderId, AddGroupRequest request)
     {   
         try
         {
-            var result = application.Execute(new AddGroup(folderId, request.groupName));
+            var result = await application.Execute(new AddGroup(folderId, request.groupName));
             return Results.Ok(result);
         }
         catch (GroupIsAlreadyAddedException)

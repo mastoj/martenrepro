@@ -26,7 +26,7 @@ builder.Services.AddMarten(options =>
 {
     var connectionString = "Host=localhost;Port=5432;Database=MartenRepro;Username=martenrepro;password=password";
     options.Connection(connectionString);
-
+//    options.Events.StreamIdentity = Marten.Events.StreamIdentity.AsString;
     options.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate; // change to None when we stabilize db structure
     options.Projections.Add<TemplateFolderBuilder>(Marten.Events.Projections.ProjectionLifecycle.Inline);
 });
